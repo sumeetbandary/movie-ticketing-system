@@ -1,14 +1,13 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 class Movie(models.Model):
     title = models.CharField(max_length=100)
-    screen = models.CharField(max_length=100)
-    show_times = models.TimeField()
-
-    def __str__(self):
-        return self.title
+    screen = models.CharField(max_length=100, default="Screen 1")
+    show_times = models.TimeField(default=timezone.make_aware(
+        timezone.datetime(2023, 1, 1, 20, 0)))
 
 
 class Seat(models.Model):
